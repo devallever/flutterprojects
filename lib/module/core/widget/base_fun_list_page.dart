@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 
@@ -37,20 +38,20 @@ class _BaseFunListPageState extends State<BaseFunListPage> {
         body: ListView.builder(
           itemCount: data.length,
           itemBuilder: (context, index) {
-            return _itemView(data[index]);
+            return _itemView(context, data[index]);
           },
         ),
       ),
     );
   }
 
-  Widget _itemView(ItemFunData data) {
+  Widget _itemView(BuildContext context, ItemFunData data) {
     return GestureDetector(
       // 设置空白区域可点击
       behavior: HitTestBehavior.translucent,
       //点击事件
       onTap: () {
-        data.itemClick.call(data);
+        data.itemClick.call(context, data);
       },
       child: Container(
         //设置内边距
