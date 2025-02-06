@@ -1,50 +1,53 @@
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
-import 'module/basic/basic_fun_list.dart';
 
-void main() {
-  runApp(const MyApp());
+abstract class BaseFunListPage extends StatefulWidget {
+  List<ItemFunData> data = [];
+
+  BaseFunListPage({super.key});
+
+  @override
+  State<BaseFunListPage> createState() =>
+      _BaseFunListPageState(getTitle(), getData());
+
+  String getTitle();
+
+  List<ItemFunData> getData();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _BaseFunListPageState extends State<BaseFunListPage> {
+  List<ItemFunData> data = [];
+  String title;
+
+  _BaseFunListPageState(this.title, this.data);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Projects'),
+      home: _BasicFunListContent(title, data),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+class _BasicFunListContent extends StatefulWidget {
+  List<ItemFunData> data = [];
+
+  _BasicFunListContent(this.title, this.data, {super.key});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<_BasicFunListContent> createState() => _BasicFunListContentState(data);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  final funList = [];
+class _BasicFunListContentState extends State<_BasicFunListContent> {
+  List<ItemFunData> data = [];
 
-  @override
-  void initState() {
-    funList.add(ItemFunData(
-        title: "Flutter Basic",
-        desc: "Flutter 基础",
-        itemClick: (data) => {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => BasicFunList2()))
-            }));
-    super.initState();
-  }
+  _BasicFunListContentState(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +58,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       //ListView
       body: ListView.builder(
-        itemCount: funList.length,
+        itemCount: data.length,
         itemBuilder: (context, index) {
-          return _itemView(funList[index]);
+          return _itemView(data[index]);
         },
       ),
     );
