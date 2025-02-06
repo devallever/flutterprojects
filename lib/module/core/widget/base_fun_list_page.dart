@@ -1,47 +1,23 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 
-abstract class BaseFunListPage extends StatefulWidget {
+import 'base_title_page.dart';
+
+abstract class BaseFunListPage extends BaseTitlePage {
   List<ItemFunData> data = [];
 
   BaseFunListPage({super.key});
 
-  @override
-  State<BaseFunListPage> createState() =>
-      _BaseFunListPageState(getTitle(), getData());
-
-  String getTitle();
-
   List<ItemFunData> getData();
-}
-
-class _BaseFunListPageState extends State<BaseFunListPage> {
-  List<ItemFunData> data = [];
-  String title;
-
-  _BaseFunListPageState(this.title, this.data);
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text(title),
-        ),
-        //ListView
-        body: ListView.builder(
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return _itemView(context, data[index]);
-          },
-        ),
-      ),
+  Widget getPageContent() {
+    data = getData();
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        return _itemView(context, data[index]);
+      },
     );
   }
 
