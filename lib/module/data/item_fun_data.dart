@@ -1,7 +1,9 @@
+import 'package:flutter/widgets.dart';
+
 class ItemFunData {
   String title = "";
   String desc = "";
-  void Function(ItemFunData data) itemClick;
+  void Function(BuildContext context, ItemFunData data) itemClick;
 
   ItemFunData({
     required this.title ,
