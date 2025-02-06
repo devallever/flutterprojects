@@ -1,3 +1,6 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutterprojects/module/basic/basic_widget_page.dart';
 import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 
@@ -11,7 +14,12 @@ class BasicFunList2 extends BaseFunListPage {
   List<ItemFunData> getData() {
     List<ItemFunData> list = [];
     list.add(ItemFunData(
-        title: "基础控件", desc: "基础控件基本用法", itemClick: (context, data) => {}));
+        title: "基础控件",
+        desc: "基础控件基本用法",
+        itemClick: (context, data) => {
+              Navigator.push(getBuilderContext(),
+                  MaterialPageRoute(builder: (context) => BasicWidgetPage()))
+            }));
     list.add(ItemFunData(
         title: "高级控件-列表",
         desc: "高级控件基本用法，列表",
