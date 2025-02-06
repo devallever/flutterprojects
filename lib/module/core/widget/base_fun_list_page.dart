@@ -28,40 +28,18 @@ class _BaseFunListPageState extends State<BaseFunListPage> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: _BasicFunListContent(title, data),
-    );
-  }
-}
-
-class _BasicFunListContent extends StatefulWidget {
-  List<ItemFunData> data = [];
-
-  _BasicFunListContent(this.title, this.data, {super.key});
-
-  final String title;
-
-  @override
-  State<_BasicFunListContent> createState() => _BasicFunListContentState(data);
-}
-
-class _BasicFunListContentState extends State<_BasicFunListContent> {
-  List<ItemFunData> data = [];
-
-  _BasicFunListContentState(this.data);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      //ListView
-      body: ListView.builder(
-        itemCount: data.length,
-        itemBuilder: (context, index) {
-          return _itemView(data[index]);
-        },
+      home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(title),
+        ),
+        //ListView
+        body: ListView.builder(
+          itemCount: data.length,
+          itemBuilder: (context, index) {
+            return _itemView(data[index]);
+          },
+        ),
       ),
     );
   }
