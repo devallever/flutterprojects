@@ -42,7 +42,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _CheckBoxWidget(),
             _RadioWidget(),
             _SwitchWidget(),
-            _SliderWidget()
+            _SliderWidget(),
+            _CardStyleWidget()
           ],
         ),
       ),
@@ -364,6 +365,27 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
               _sliderValue = value;
             });
           })
+    ]);
+  }
+
+  Widget _CardStyleWidget() {
+    return Column(children: [
+      _labelTextView('卡片样式 Container'),
+      Container(
+        width: 200,
+        height: 100,
+        decoration: BoxDecoration(
+            color: Color(0xffffffff),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.2), // 阴影颜色
+                spreadRadius: 0, // 阴影扩散
+                blurRadius: 5, // 阴影模糊半径
+                offset: const Offset(0, 0), // 阴影偏移量
+              ),
+            ]),
+      )
     ]);
   }
 
