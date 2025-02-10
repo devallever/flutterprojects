@@ -45,6 +45,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _SliderWidget(),
             _CardStyleWidget(),
             _Dialog(),
+            _ProgressWidget()
           ],
         ),
       ),
@@ -438,6 +439,28 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
                 });
           },
           child: Text('showModalBottomSheet'))
+    ]);
+  }
+
+  var progressValue = 0.0;
+
+  Widget _ProgressWidget() {
+    return Column(children: [
+      _labelTextView('水平进度条 LinearProgressIndicator'),
+      LinearProgressIndicator(
+        value: progressValue,
+        minHeight: 10,
+        borderRadius: BorderRadius.circular(45),
+      ),
+      ElevatedButton(
+          onPressed: () {
+            setState(() {
+              progressValue = progressValue + 0.01;
+            });
+          },
+          child: Text('更新进度')),
+      _labelTextView('圆形进度条 CircularProgressIndicator'),
+      CircularProgressIndicator()
     ]);
   }
 
