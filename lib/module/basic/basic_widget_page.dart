@@ -43,7 +43,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _RadioWidget(),
             _SwitchWidget(),
             _SliderWidget(),
-            _CardStyleWidget()
+            _CardStyleWidget(),
+            _Dialog(),
           ],
         ),
       ),
@@ -386,6 +387,57 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
               ),
             ]),
       )
+    ]);
+  }
+
+  Widget _Dialog() {
+    return Column(children: [
+      _labelTextView('弹窗 Container'),
+      ElevatedButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Title'),
+                    content: Text('Message'),
+                    actions: [
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Cancel')),
+                      TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Ok'))
+                    ],
+                  );
+                });
+          },
+          child: Text('showAlertDialog')),
+      _labelTextView('弹窗 showModalBottomSheet'),
+      ElevatedButton(
+          onPressed: () {
+            showModalBottomSheet(
+                context: context,
+                builder: (BuildContext context) {
+                  return Container(
+                    height: 300,
+                    width: MediaQuery.of(context).size.width, // 屏幕宽度
+                    child: Column(children: [
+                      Expanded(child: Container()),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Close'))
+                    ]),
+                  );
+                });
+          },
+          child: Text('showModalBottomSheet'))
     ]);
   }
 
