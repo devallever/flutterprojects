@@ -41,7 +41,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _InputExitWidget(),
             _CheckBoxWidget(),
             _RadioWidget(),
-            _SwitchWidget()
+            _SwitchWidget(),
+            _SliderWidget()
           ],
         ),
       ),
@@ -345,6 +346,22 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
           onChanged: (value) {
             setState(() {
               _switchValue = value;
+            });
+          })
+    ]);
+  }
+
+  var _sliderValue = 0.0;
+
+  Widget _SliderWidget() {
+    return Column(children: [
+      _labelTextView('拖动 Slider'),
+      Slider(
+          value: _sliderValue,
+          max: 100,
+          onChanged: (value) {
+            setState(() {
+              _sliderValue = value;
             });
           })
     ]);
