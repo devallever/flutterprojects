@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutterprojects/module/core/widget/base_title_page.dart';
 
@@ -31,7 +33,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _LayoutWidget(),
             _TextWidget(),
             _ImageWidget(),
-            _ButtonWidget()
+            _ButtonWidget(),
+            _InputExitWidget()
           ],
         ),
       ),
@@ -168,6 +171,49 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
         ),
         child: Text('ElevatedButton'),
       )
+    ]);
+  }
+
+  Widget _InputExitWidget() {
+    return Column(children: [
+      _labelTextView('输入框 TextField'),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        child: TextField(),
+      ),
+      _labelTextView('输入框样式 TextField'),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        child: Container(
+          decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5), // 阴影颜色
+                  spreadRadius: 0, // 阴影扩散
+                  blurRadius: 10, // 阴影模糊半径
+                  offset: const Offset(0, 0), // 阴影偏移量
+                ),
+              ],
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.black12, width: 1)),
+          child: TextField(
+            onChanged: (content) {
+              log("TextField changed: $content");
+            },
+            onSubmitted: (content) {
+              log("TextField submitted: $content");
+            },
+            decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: 10, vertical: 0), // 控制文本的实际填充区域,
+                // label: Text('Label'),
+                // labelStyle: TextStyle(),
+                hintText: 'This hintText',
+                border: OutlineInputBorder(borderSide: BorderSide.none)),
+          ),
+        ),
+      ),
     ]);
   }
 
