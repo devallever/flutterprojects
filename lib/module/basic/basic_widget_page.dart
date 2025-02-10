@@ -40,7 +40,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _ButtonWidget(),
             _InputExitWidget(),
             _CheckBoxWidget(),
-            _RadioWidget()
+            _RadioWidget(),
+            _SwitchWidget()
           ],
         ),
       ),
@@ -332,6 +333,21 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
         )
       ],
     );
+  }
+
+  var _switchValue = false;
+
+  Widget _SwitchWidget() {
+    return Column(children: [
+      _labelTextView('开关 Switch'),
+      Switch(
+          value: _switchValue,
+          onChanged: (value) {
+            setState(() {
+              _switchValue = value;
+            });
+          })
+    ]);
   }
 
   Widget _labelTextView(String label) {
