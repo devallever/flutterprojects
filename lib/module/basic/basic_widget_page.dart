@@ -23,6 +23,10 @@ class BasicWidgetPageContent extends StatefulWidget {
 }
 
 class BasicWidgetPageState extends State<BasicWidgetPageContent> {
+  final _textController = TextEditingController();
+  var cbSelect = false;
+  final List<CbItem> cbItemList = [];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -34,7 +38,9 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _TextWidget(),
             _ImageWidget(),
             _ButtonWidget(),
-            _InputExitWidget()
+            _InputExitWidget(),
+            _CheckBoxWidget(),
+            _RadioWidget()
           ],
         ),
       ),
@@ -198,6 +204,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
               borderRadius: BorderRadius.circular(12),
               border: Border.all(color: Colors.black12, width: 1)),
           child: TextField(
+            controller: _textController,
             onChanged: (content) {
               log("TextField changed: $content");
             },
@@ -214,7 +221,117 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
           ),
         ),
       ),
+      ElevatedButton(
+          onPressed: () {
+            log("commit text: ${_textController.text}");
+          },
+          child: Text('submitted'))
     ]);
+  }
+
+  /// *
+  /// https://api.flutter.dev/flutter/material/CheckboxListTile-class.html
+  Widget _CheckBoxWidget() {
+    final List<Widget> listWidget = [];
+    final List<Widget> customCBWidget = [];
+    if (cbItemList.isEmpty) {
+      for (int i = 0; i < 3; i++) {
+        cbItemList.add(CbItem(title: "Item${i + 1}", select: false));
+      }
+    }
+
+    for (int i = 0; i < 3; i++) {
+      listWidget.add(CheckboxListTile(
+          title: Text(cbItemList[i].title),
+          value: cbItemList[i].select, // 检查是否选中
+          onChanged: (bool? value) {
+            setState(() {
+              cbItemList[i].select = !cbItemList[i].select;
+            });
+          },
+          controlAffinity: ListTileControlAffinity.values.first));
+
+      //问题是默认的复选框还在啊??/
+      customCBWidget.add(CheckboxListTile(
+        value: cbItemList[i].select, // 检查是否选中
+        onChanged: (bool? value) {
+          setState(() {
+            cbItemList[i].select = !cbItemList[i].select;
+          });
+        },
+        title: Row(
+          children: [
+            Checkbox(
+                value: cbItemList[i].select,
+                onChanged: (checked) {
+                  setState(() {
+                    cbItemList[i].select = !cbItemList[i].select;
+                  });
+                }),
+            Text(cbItemList[i].title)
+          ],
+        ),
+      ));
+    }
+
+    return Column(
+      children: [
+        _labelTextView('选中框 Checkbox'),
+        Checkbox(
+            value: cbSelect,
+            onChanged: (value) {
+              setState(() {
+                cbSelect = !cbSelect;
+              });
+            }),
+        _labelTextView('多选 CheckboxListTile'),
+        Column(children: listWidget),
+        _labelTextView('多选 自定义CheckboxListTile'),
+        Column(children: customCBWidget)
+      ],
+    );
+  }
+
+  var rbSelect = 'OSK';
+  final List<String> rbGroupList = [];
+  var selectRadioValue = '';
+
+  Widget _RadioWidget() {
+    if (rbGroupList.isEmpty) {
+      rbGroupList.add('Item1');
+      rbGroupList.add('Item2');
+      rbGroupList.add('Item3');
+    }
+    final List<Widget> listRadioListTitle = [];
+    for (int i = 0; i < 3; i++) {
+      final titleValue = rbGroupList[i];
+      listRadioListTitle.add(RadioListTile(
+          title: Text(titleValue),
+          value: titleValue,
+          groupValue: selectRadioValue,
+          onChanged: (value) {
+            setState(() {
+              selectRadioValue = value!;
+            });
+          }));
+    }
+    return Column(
+      children: [
+        _labelTextView('单选 Radio'),
+        Radio(
+            value: 'OKK',
+            groupValue: rbSelect,
+            onChanged: (value) {
+              setState(() {
+                rbSelect = 'OK';
+              });
+            }),
+        _labelTextView('单选 RadioListTile'),
+        Column(
+          children: listRadioListTitle,
+        )
+      ],
+    );
   }
 
   Widget _labelTextView(String label) {
@@ -227,4 +344,11 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
       ),
     );
   }
+}
+
+class CbItem {
+  var title = "";
+  var select = false;
+
+  CbItem({required this.title, required this.select});
 }
