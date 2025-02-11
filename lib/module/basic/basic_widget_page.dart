@@ -47,7 +47,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _CardStyleWidget(),
             _Dialog(),
             _ProgressWidget(),
-            _AppBarWidget()
+            _AppBarWidget(),
+            _NavigationBarWidget(),
           ],
         ),
       ),
@@ -490,6 +491,42 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
                   height: 20,
                   image: AssetImage('lib/assets/icon_home_recording_24.png')))
         ],
+      )
+    ]);
+  }
+
+  var _currentNavigationBarIndex = 0;
+
+  Widget _NavigationBarWidget() {
+    final List<BottomNavigationBarItem> navigationBarItems = [];
+    for (int i = 0; i < 4; i++) {
+      navigationBarItems.add(BottomNavigationBarItem(
+        icon: Image.asset(
+          'lib/assets/icon_home_recording_24.png',
+          width: 24,
+          height: 24,
+        ),
+        activeIcon: Image.asset(
+          'lib/assets/icon_home_recording_24.png',
+          width: 24,
+          height: 24,
+        ),
+        label: 'Item$i',
+      ));
+    }
+    return Column(children: [
+      _labelTextView('底部导航栏 BottomNavigationBar'),
+      BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _currentNavigationBarIndex = index;
+          });
+        },
+        currentIndex: _currentNavigationBarIndex,
+        items: navigationBarItems,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.black26,
+        type: BottomNavigationBarType.fixed,
       )
     ]);
   }
