@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/module/core/toast.dart';
 import 'package:flutterprojects/module/core/widget/base_title_page.dart';
 
 class BasicWidgetPage extends BaseTitlePage {
@@ -45,7 +46,8 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _SliderWidget(),
             _CardStyleWidget(),
             _Dialog(),
-            _ProgressWidget()
+            _ProgressWidget(),
+            _AppBarWidget()
           ],
         ),
       ),
@@ -461,6 +463,34 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
           child: Text('更新进度')),
       _labelTextView('圆形进度条 CircularProgressIndicator'),
       CircularProgressIndicator()
+    ]);
+  }
+
+  Widget _AppBarWidget() {
+    return Column(children: [
+      AppBar(
+        leading: IconButton(
+            onPressed: () {
+              toast('back');
+            },
+            icon: Image(
+              image: AssetImage('lib/assets/icon_home_recording_24.png'),
+              width: 20,
+              height: 20,
+            )),
+        title: Text('AppBar',
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500)),
+        actions: [
+          IconButton(
+              onPressed: () {
+                toast('action');
+              },
+              icon: Image(
+                  width: 20,
+                  height: 20,
+                  image: AssetImage('lib/assets/icon_home_recording_24.png')))
+        ],
+      )
     ]);
   }
 
