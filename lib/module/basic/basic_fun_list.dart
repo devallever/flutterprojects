@@ -5,6 +5,8 @@ import 'package:flutterprojects/module/basic/list_widget_page.dart';
 import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 
+import 'grid_widget_page.dart';
+
 class BasicFunList2 extends BaseFunListPage {
   @override
   String getTitle() {
@@ -31,7 +33,10 @@ class BasicFunList2 extends BaseFunListPage {
     list.add(ItemFunData(
         title: "高级控件-网格",
         desc: "高级控件基本用法，网格",
-        itemClick: (context, data) => {}));
+        itemClick: (context, data) => {
+          Navigator.push(getBuilderContext(),
+              MaterialPageRoute(builder: (context) => GridWidgetPage()))
+        }));
     list.add(ItemFunData(
         title: "高级控件-ViewPager",
         desc: "高级控件基本用法，分页",
