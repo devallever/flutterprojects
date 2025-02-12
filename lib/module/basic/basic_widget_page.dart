@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/module/basic/label_text_view.dart';
 import 'package:flutterprojects/module/core/toast.dart';
 import 'package:flutterprojects/module/core/widget/base_title_page.dart';
 
@@ -58,12 +59,12 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _LayoutWidget() {
     return Column(children: [
-      _labelTextView('滚动布局 SingleChildScrollView'),
-      _labelTextView('垂直布局 Column'),
+      labelTextView('滚动布局 SingleChildScrollView'),
+      labelTextView('垂直布局 Column'),
       Column(
         children: [Text('1'), Text('2'), Text('3')],
       ),
-      _labelTextView('水平布局 Row'),
+      labelTextView('水平布局 Row'),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -77,20 +78,20 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _TextWidget() {
     return Column(children: [
-      _labelTextView('文本 Text'),
+      labelTextView('文本 Text'),
       Text('我是Text'),
     ]);
   }
 
   Widget _ImageWidget() {
     return Column(children: [
-      _labelTextView('本地图片 Image'),
+      labelTextView('本地图片 Image'),
       Image(
         image: AssetImage('lib/assets/default_image.jpg'),
         width: 150,
         height: 150,
       ),
-      _labelTextView('本地图片圆角 ClipRRect + Image'),
+      labelTextView('本地图片圆角 ClipRRect + Image'),
       ClipRRect(
         borderRadius: BorderRadius.circular(10.0), // 圆角的大小,
         child: Image(
@@ -98,7 +99,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             width: 150,
             height: 150),
       ),
-      _labelTextView('本地图片圆角 Container + Image'),
+      labelTextView('本地图片圆角 Container + Image'),
       Container(
         width: 150,
         height: 150,
@@ -107,7 +108,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             image: DecorationImage(
                 image: AssetImage('lib/assets/default_image.jpg'))),
       ),
-      _labelTextView('本地图片圆形 ClipOval + Image'),
+      labelTextView('本地图片圆形 ClipOval + Image'),
       ClipOval(
         child: Image(
             image: AssetImage('lib/assets/default_image.jpg'),
@@ -115,13 +116,13 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             height: 150),
       ),
       //
-      _labelTextView('本地图片圆形 CircleAvatar + AssetImage'),
+      labelTextView('本地图片圆形 CircleAvatar + AssetImage'),
       CircleAvatar(
         radius: 75,
         backgroundImage: AssetImage('lib/assets/default_image.jpg'),
       ),
       //
-      _labelTextView('网络图片 NetworkImage'),
+      labelTextView('网络图片 NetworkImage'),
       Image(
         image: NetworkImage(
             'https://gips2.baidu.com/it/u=1651586290,17201034&fm=3028&app=3028&f=JPEG&fmt=auto&q=100&size=f600_800'),
@@ -134,13 +135,13 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _ButtonWidget() {
     return Column(children: [
-      _labelTextView('按钮 TextButton'),
+      labelTextView('按钮 TextButton'),
       TextButton(onPressed: () => {}, child: Text('TextButton')),
-      _labelTextView('按钮 OutlinedButton'),
+      labelTextView('按钮 OutlinedButton'),
       OutlinedButton(onPressed: () => {}, child: Text('OutlinedButton')),
-      _labelTextView('按钮 ElevatedButton'),
+      labelTextView('按钮 ElevatedButton'),
       ElevatedButton(onPressed: () => {}, child: Text('ElevatedButton')),
-      _labelTextView('图标按钮 Container + ElevatedButton.icon'),
+      labelTextView('图标按钮 Container + ElevatedButton.icon'),
       Container(
         decoration: const BoxDecoration(),
         height: 56,
@@ -165,7 +166,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
           ),
         ),
       ),
-      _labelTextView('按钮 ElevatedButton 修改样式'),
+      labelTextView('按钮 ElevatedButton 修改样式'),
       ElevatedButton(
         onPressed: () => {},
         style: ButtonStyle(
@@ -191,12 +192,12 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _InputExitWidget() {
     return Column(children: [
-      _labelTextView('输入框 TextField'),
+      labelTextView('输入框 TextField'),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: TextField(),
       ),
-      _labelTextView('输入框样式 TextField'),
+      labelTextView('输入框样式 TextField'),
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: Container(
@@ -285,7 +286,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
     return Column(
       children: [
-        _labelTextView('选中框 Checkbox'),
+        labelTextView('选中框 Checkbox'),
         Checkbox(
             value: cbSelect,
             onChanged: (value) {
@@ -293,9 +294,9 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
                 cbSelect = !cbSelect;
               });
             }),
-        _labelTextView('多选 CheckboxListTile'),
+        labelTextView('多选 CheckboxListTile'),
         Column(children: listWidget),
-        _labelTextView('多选 自定义CheckboxListTile'),
+        labelTextView('多选 自定义CheckboxListTile'),
         Column(children: customCBWidget)
       ],
     );
@@ -326,7 +327,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
     }
     return Column(
       children: [
-        _labelTextView('单选 Radio'),
+        labelTextView('单选 Radio'),
         Radio(
             value: 'OKK',
             groupValue: rbSelect,
@@ -335,7 +336,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
                 rbSelect = 'OK';
               });
             }),
-        _labelTextView('单选 RadioListTile'),
+        labelTextView('单选 RadioListTile'),
         Column(
           children: listRadioListTitle,
         )
@@ -347,7 +348,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _SwitchWidget() {
     return Column(children: [
-      _labelTextView('开关 Switch'),
+      labelTextView('开关 Switch'),
       Switch(
           value: _switchValue,
           onChanged: (value) {
@@ -362,7 +363,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _SliderWidget() {
     return Column(children: [
-      _labelTextView('拖动 Slider'),
+      labelTextView('拖动 Slider'),
       Slider(
           value: _sliderValue,
           max: 100,
@@ -376,7 +377,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _CardStyleWidget() {
     return Column(children: [
-      _labelTextView('卡片样式 Container'),
+      labelTextView('卡片样式 Container'),
       Container(
         width: 200,
         height: 100,
@@ -397,7 +398,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _Dialog() {
     return Column(children: [
-      _labelTextView('弹窗 Container'),
+      labelTextView('弹窗 Container'),
       ElevatedButton(
           onPressed: () {
             showDialog(
@@ -422,7 +423,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
                 });
           },
           child: Text('showAlertDialog')),
-      _labelTextView('弹窗 showModalBottomSheet'),
+      labelTextView('弹窗 showModalBottomSheet'),
       ElevatedButton(
           onPressed: () {
             showModalBottomSheet(
@@ -450,7 +451,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
 
   Widget _ProgressWidget() {
     return Column(children: [
-      _labelTextView('水平进度条 LinearProgressIndicator'),
+      labelTextView('水平进度条 LinearProgressIndicator'),
       LinearProgressIndicator(
         value: progressValue,
         minHeight: 10,
@@ -463,7 +464,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             });
           },
           child: Text('更新进度')),
-      _labelTextView('圆形进度条 CircularProgressIndicator'),
+      labelTextView('圆形进度条 CircularProgressIndicator'),
       CircularProgressIndicator()
     ]);
   }
@@ -516,7 +517,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
       ));
     }
     return Column(children: [
-      _labelTextView('底部导航栏 BottomNavigationBar'),
+      labelTextView('底部导航栏 BottomNavigationBar'),
       BottomNavigationBar(
         onTap: (index) {
           setState(() {
@@ -544,14 +545,14 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
     }
 
     return Column(children: [
-      _labelTextView('Tab栏 TabBar 固定'),
+      labelTextView('Tab栏 TabBar 固定'),
       DefaultTabController(
         length: tabList.length,
         child: TabBar(
           tabs: tabList,
         ),
       ),
-      _labelTextView('Tab栏 TabBar 滚动'),
+      labelTextView('Tab栏 TabBar 滚动'),
       DefaultTabController(
         length: tabList2.length,
         child: TabBar(
@@ -563,16 +564,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
     ]);
   }
 
-  Widget _labelTextView(String label) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-      child: Text(
-        label,
-        style: TextStyle(
-            fontSize: 14, color: Colors.black, fontWeight: FontWeight.w500),
-      ),
-    );
-  }
+
 }
 
 class CbItem {
