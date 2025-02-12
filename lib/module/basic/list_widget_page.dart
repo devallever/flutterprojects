@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutterprojects/module/basic/label_text_view.dart';
+import 'package:flutterprojects/module/core/toast.dart';
 import 'package:flutterprojects/module/core/util.dart';
 import 'package:flutterprojects/module/core/widget/base_title_page.dart';
 
@@ -45,30 +47,37 @@ class ListWidgetPageState extends State<ListWidgetPageContent> {
     return Column(children: [
       labelTextView('垂直列表 ListView'),
       SizedBox(
-        height: 246,//column 嵌套 listview 必须设置height????
+        height: 246, //column 嵌套 listview 必须设置height????
         child: ListView.builder(
             itemCount: userList.length,
             itemBuilder: (context, index) {
               final item = userList[index];
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image(
-                      image: AssetImage(item.avatar),
-                      width: 72,
-                      height: 72,
+              return InkWell(
+                  onTap: () {
+                    toast(item.name);
+                  },
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image(
+                          image: AssetImage(item.avatar),
+                          width: 72,
+                          height: 72,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(item.id.toString()),
+                              Text(item.name)
+                            ])
+                      ],
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [Text(item.id.toString()), Text(item.name)])
-                  ],
-                ),
-              );
+                  ));
             }),
       ),
       labelTextView('横向列表 ListView scrollDirection'),
@@ -79,23 +88,29 @@ class ListWidgetPageState extends State<ListWidgetPageContent> {
             itemCount: userList.length,
             itemBuilder: (context, index) {
               final item = userList[index];
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image(
-                      image: AssetImage(item.avatar),
-                      width: 72,
-                      height: 72,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [Text(item.id.toString()), Text(item.name)])
-                  ],
+              return InkWell(
+                borderRadius: BorderRadius.circular(0),
+                onTap: () {
+                  toast(item.name);
+                },
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image(
+                        image: AssetImage(item.avatar),
+                        width: 72,
+                        height: 72,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [Text(item.id.toString()), Text(item.name)])
+                    ],
+                  ),
                 ),
               );
             }),
