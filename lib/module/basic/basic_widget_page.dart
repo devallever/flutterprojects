@@ -49,6 +49,7 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
             _ProgressWidget(),
             _AppBarWidget(),
             _NavigationBarWidget(),
+            _TabBarWidget()
           ],
         ),
       ),
@@ -527,6 +528,37 @@ class BasicWidgetPageState extends State<BasicWidgetPageContent> {
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.black26,
         type: BottomNavigationBarType.fixed,
+      )
+    ]);
+  }
+
+  Widget _TabBarWidget() {
+    final List<Tab> tabList = [];
+    for (int i = 0; i < 3; i++) {
+      tabList.add(Tab(icon: Icon(Icons.directions_car)));
+    }
+
+    final List<Tab> tabList2 = [];
+    for (int i = 0; i < 10; i++) {
+      tabList2.add(Tab(icon: Icon(Icons.directions_car)));
+    }
+
+    return Column(children: [
+      _labelTextView('Tab栏 TabBar 固定'),
+      DefaultTabController(
+        length: tabList.length,
+        child: TabBar(
+          tabs: tabList,
+        ),
+      ),
+      _labelTextView('Tab栏 TabBar 滚动'),
+      DefaultTabController(
+        length: tabList2.length,
+        child: TabBar(
+          tabAlignment: TabAlignment.start, //添加这一行，解决空白.isScrollable: true 时生效
+          tabs: tabList2,
+          isScrollable: true,
+        ),
       )
     ]);
   }
