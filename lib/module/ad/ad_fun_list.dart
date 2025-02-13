@@ -12,7 +12,7 @@ class AdFunList extends BaseFunListPage {
           title: 'Flutter-Admob-内置广告',
           desc: '横幅，插页，激励视频',
           itemClick: (context, data) {
-            Navigator.push(context,
+            Navigator.push(getBuilderContext(),
                 MaterialPageRoute(builder: (context) => InternalAdPage()));
           }),
       ItemFunData(
