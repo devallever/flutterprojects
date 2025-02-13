@@ -22,9 +22,7 @@ abstract class BaseFunListPage extends BaseTitlePage {
   }
 
   Widget _itemView(BuildContext context, ItemFunData data) {
-    return GestureDetector(
-      // 设置空白区域可点击
-      behavior: HitTestBehavior.translucent,
+    return InkWell(
       //点击事件
       onTap: () {
         data.itemClick.call(context, data);
