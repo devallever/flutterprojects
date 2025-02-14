@@ -12,6 +12,8 @@ class MainActivity : FlutterActivity() {
     private val CHANNEL_CALL_FLUTTER_FROM_ANDROID = "CHANNEL_CALL_FLUTTER_FROM_ANDROID"
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+        flutterEngine.plugins.add(CodeTextViewPlugin())
+        flutterEngine.plugins.add(LayoutTextViewPlugin())
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             CHANNEL_APP
