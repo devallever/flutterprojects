@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterprojects/module/basic/animation_fun_list.dart';
 import 'package:flutterprojects/module/basic/architecture_navigationBar_view_pager.dart';
 import 'package:flutterprojects/module/basic/basic_widget_page.dart';
 import 'package:flutterprojects/module/basic/list_widget_page.dart';
@@ -56,6 +57,14 @@ class BasicFunList2 extends BaseFunListPage {
                       builder: (context) =>
                           ArchitectureNavigationBarPageView()))
             }));
+    list.add(ItemFunData(
+        title: '动画',
+        desc: '动画',
+        itemClick: (context, data) => {
+              Navigator.push(getBuilderContext(),
+                  MaterialPageRoute(builder: (context) => AnimationFunList()))
+            }));
     return list;
   }
 }
+
