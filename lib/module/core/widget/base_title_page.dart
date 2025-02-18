@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../basic/provider_page.dart';
 
 abstract class BaseTitlePage extends StatefulWidget {
   _BaseTitlePageState? state;
@@ -33,6 +36,7 @@ class _BaseTitlePageState extends State<BaseTitlePage> {
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<CounterState>(context);
     buildContext = context;
     return MaterialApp(
       theme: ThemeData(

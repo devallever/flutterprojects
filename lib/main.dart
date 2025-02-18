@@ -7,12 +7,15 @@ import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 import 'package:flutterprojects/module/platform/platform_fun_list.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:provider/provider.dart';
 import 'module/basic/basic_fun_list.dart';
+import 'module/basic/provider_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   unawaited(MobileAds.instance.initialize());
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (_) => CounterState(), child: MyApp()));
 }
 
 class MyApp extends BaseFunListPage {

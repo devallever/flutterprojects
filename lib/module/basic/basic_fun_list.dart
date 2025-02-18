@@ -7,6 +7,7 @@ import 'package:flutterprojects/module/basic/list_widget_page.dart';
 import 'package:flutterprojects/module/basic/page_data_detail.dart';
 import 'package:flutterprojects/module/basic/page_data_trans.dart';
 import 'package:flutterprojects/module/basic/page_widget_page.dart';
+import 'package:flutterprojects/module/basic/provider_page.dart';
 import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 
@@ -73,6 +74,13 @@ class BasicFunList2 extends BaseFunListPage {
         itemClick: (context, data) => {
           Navigator.push(getBuilderContext(),
               MaterialPageRoute(builder: (context) => PageDataTransPage()))
+        }));
+    list.add(ItemFunData(
+        title: 'Provider',
+        desc: '页面状态管理',
+        itemClick: (context, data) => {
+          Navigator.push(getBuilderContext(),
+              MaterialPageRoute(builder: (context) => ProviderPage()))
         }));
     return list;
   }
