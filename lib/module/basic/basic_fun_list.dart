@@ -4,6 +4,8 @@ import 'package:flutterprojects/module/basic/animation_fun_list.dart';
 import 'package:flutterprojects/module/basic/architecture_navigationBar_view_pager.dart';
 import 'package:flutterprojects/module/basic/basic_widget_page.dart';
 import 'package:flutterprojects/module/basic/list_widget_page.dart';
+import 'package:flutterprojects/module/basic/page_data_detail.dart';
+import 'package:flutterprojects/module/basic/page_data_trans.dart';
 import 'package:flutterprojects/module/basic/page_widget_page.dart';
 import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
@@ -57,6 +59,7 @@ class BasicFunList2 extends BaseFunListPage {
                       builder: (context) =>
                           ArchitectureNavigationBarPageView()))
             }));
+    //Flutter动画 --- 平移/旋转/缩放/渐变: https://www.jianshu.com/p/abc99bd22b33
     list.add(ItemFunData(
         title: '动画',
         desc: '动画',
@@ -64,6 +67,13 @@ class BasicFunList2 extends BaseFunListPage {
               Navigator.push(getBuilderContext(),
                   MaterialPageRoute(builder: (context) => AnimationFunList()))
             }));
+    list.add(ItemFunData(
+        title: '传递页面数据',
+        desc: '传递页面数据',
+        itemClick: (context, data) => {
+          Navigator.push(getBuilderContext(),
+              MaterialPageRoute(builder: (context) => PageDataTransPage()))
+        }));
     return list;
   }
 }
