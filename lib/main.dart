@@ -45,6 +45,13 @@ class MyApp extends BaseFunListPage {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => PlatformFunList()))
         }));
+    funList.add(ItemFunData(
+        title: "MVVM架构",
+        desc: "mvvm架构",
+        itemClick: (context, data) => {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => PlatformFunList()))
+        }));
     return funList;
   }
 
