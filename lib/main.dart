@@ -6,6 +6,8 @@ import 'package:flutterprojects/module/ad/ad_fun_list.dart';
 import 'package:flutterprojects/module/core/widget/base_fun_list_page.dart';
 import 'package:flutterprojects/module/data/item_fun_data.dart';
 import 'package:flutterprojects/module/platform/platform_fun_list.dart';
+import 'package:flutterprojects/mvvm/login/vm/login_view_model.dart';
+import 'package:flutterprojects/mvvm/mvvm_main.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'module/basic/basic_fun_list.dart';
@@ -14,8 +16,10 @@ import 'module/basic/provider_page.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   unawaited(MobileAds.instance.initialize());
-  runApp(ChangeNotifierProvider(
-      create: (_) => CounterState(), child: MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => CounterState()),
+    ChangeNotifierProvider(create: (_) => LoginViewModel()),
+  ], child: MyApp()));
 }
 
 class MyApp extends BaseFunListPage {
@@ -50,7 +54,7 @@ class MyApp extends BaseFunListPage {
         desc: "mvvm架构",
         itemClick: (context, data) => {
           Navigator.push(context,
-              MaterialPageRoute(builder: (context) => PlatformFunList()))
+              MaterialPageRoute(builder: (context) => MvvmMain()))
         }));
     return funList;
   }
