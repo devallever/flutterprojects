@@ -5,8 +5,13 @@ import 'package:flutterprojects/mvvm/login/model/data/user.dart';
 
 class LoginViewModel with ChangeNotifier {
 
-  Future<bool> login(User user) async {
+  String loginState = "未登录";
+
+  Future<void> login(User user) async {
+    loginState = '登录中';
+    notifyListeners();
     await Future.delayed(Duration(seconds: 2));
-    return true;
+    loginState = '登录成功';
+    notifyListeners();
   }
 }
